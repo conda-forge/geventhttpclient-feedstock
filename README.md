@@ -5,7 +5,7 @@ Home: https://github.com/gwik/geventhttpclient
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: A high performance, concurrent http client library for python with gevent
 
