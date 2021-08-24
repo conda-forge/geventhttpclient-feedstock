@@ -1,5 +1,5 @@
 {% set name = "geventhttpclient" %}
-{% set version = "1.4.5" %}
+{% set version = "1.5.1" %}
 
 package:
   name: {{ name }}
@@ -7,25 +7,23 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 3f0ab18d84ef26ba0c9df73ae2a41ba30a46072b447f2e36c740400de4a63d44
-  - url: https://raw.githubusercontent.com/gwik/{{ name }}/master/LICENSE-MIT
-    sha256: 5a2f8f840ffb3e61c0f4aa3df14fff2c0bc28bdcf5d0d1e6582dab418aa79e3c
+    sha256: 4aead64253d2769a6528544f7812ce8d71ae13551d079f2d9a3533d72818f2e0
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
   host:
     - python
     - pip
   run:
     - python
-    - gevent >=0.13
+    - brotli-python
     - certifi
+    - gevent >=0.13
     - six
 
 test:
@@ -42,24 +40,23 @@ about:
   license_family: MIT
   license_file: LICENSE-MIT
   summary: A high performance, concurrent http client library for python with gevent
-
-  # The remaining entries in this section are optional, but recommended.
   description: |
-    gevent.httplib support was removed in gevent 1.0, geventhttpclient now provides
-    that missing functionality.
+    gevent.httplib support was removed in gevent 1.0, geventhttpclient now
+    provides that missing functionality.
 
-    geventhttpclient use a fast http parser, written in C, originating from nginx,
-    extracted and modified by Joyent.
+    geventhttpclient uses a fast http parser, written in C, originating from
+    nginx, extracted and modified by Joyent.
 
-    geventhttpclient has been specifically designed for high concurrency, streaming
-    and support HTTP 1.1 persistent connections. More generally it is designed for
-    efficiently pulling from REST APIs and streaming APIs like Twitter's.
+    geventhttpclient has been specifically designed for high concurrency,
+    streaming and support HTTP 1.1 persistent connections. More generally it is
+    designed for efficiently pulling from REST APIs and streaming APIs
+    like Twitter's.
 
-    Safe SSL support is provided by default. geventhttpclient depends on the certifi
-    CA Bundle. This is the same CA Bundle which ships with the Requests codebase, and
-    is derived from Mozilla Firefox's canonical set.
-
-    Python 2.7 and 3.4+ are supported. Python 2.6 is no longer supported.
+    Safe SSL support is provided by default. geventhttpclient depends on
+    the certifi CA Bundle. This is the same CA Bundle which ships with the
+    Requests codebase, and is derived from Mozilla Firefox's canonical set.
+    As of 1.5, only Python 3.6+ is fully supported (with prebuilt wheels), 
+    but Python 2.7 and 3.5 *should* work too.
 
     Use of SSL/TLS with python 2.7.9 is not recommended and may be broken.
 
