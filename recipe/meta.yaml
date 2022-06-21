@@ -40,7 +40,7 @@ about:
   home: https://github.com/gwik/geventhttpclient
   license: MIT
   license_family: MIT
-  license_file: LICENSE-MIT
+  license_file: LICENSE.txt
   summary: A high performance, concurrent http client library for python with gevent
   description: |
     gevent.httplib support was removed in gevent 1.0, geventhttpclient now
