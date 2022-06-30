@@ -12,6 +12,7 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [python_impl == "pypy" and (aarch64 or ppc64le)]
 
 requirements:
   build:
@@ -57,7 +58,7 @@ about:
     Safe SSL support is provided by default. geventhttpclient depends on
     the certifi CA Bundle. This is the same CA Bundle which ships with the
     Requests codebase, and is derived from Mozilla Firefox's canonical set.
-    As of 1.5, only Python 3.6+ is fully supported (with prebuilt wheels), 
+    As of 1.5, only Python 3.6+ is fully supported (with prebuilt wheels),
     but Python 2.7 and 3.5 *should* work too.
 
     Use of SSL/TLS with python 2.7.9 is not recommended and may be broken.
