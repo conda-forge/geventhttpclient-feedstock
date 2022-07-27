@@ -1,5 +1,5 @@
 {% set name = "geventhttpclient" %}
-{% set version = "1.5.5" %}
+{% set version = "2.0" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 1f4f973fb9f6afe4ceec139d5d5d8199b5733371a6d2ecc065e257c81020539b
+    sha256: 49e8332daa27f341de08d938878289b3b773695cdb96f2296518c2d6e3ebec92
 
 build:
   number: 0
