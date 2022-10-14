@@ -1,13 +1,12 @@
-{% set name = "geventhttpclient" %}
 {% set version = "2.0.3" %}
 
 package:
-  name: {{ name }}
+  name: geventhttpclient
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 143510223cb8994a01678dc8b4f2b48e3e7d2e25d18b0679d7167acc5a29feef
+  url: https://pypi.io/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
+  sha256: 159dbc9ee6c035068321287134301f93e92d0a0317a7534f6eb441ea5cc15a31
 
 build:
   number: 0
@@ -38,10 +37,12 @@ test:
     - python -m pip check
 
 about:
-  home: https://github.com/gwik/geventhttpclient
+  home: https://github.com/geventhttpclient/geventhttpclient
   license: MIT
   license_family: MIT
-  license_file: LICENSE.txt
+  license_file:
+    - LICENSE.txt
+    - llhttp/LICENSE-MIT
   summary: A high performance, concurrent http client library for python with gevent
   description: |
     gevent.httplib support was removed in gevent 1.0, geventhttpclient now
