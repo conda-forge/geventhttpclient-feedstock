@@ -42,7 +42,7 @@ test:
     - geventhttpclient
   commands:
     - python -m pip check
-    {% set pytest_args = "-k 'not brotli_response'" %}
+    {% set pytest_args = '-k "not brotli_response"' %}
     {% set pytest_args = pytest_args + " --cov=geventhttpclient --cov-branch --no-cov-on-fail --cov-fail-under=71" %}  # [python_impl != "pypy"]
     - pytest -vv src/geventhttpclient/tests {{ pytest_args }}
 
