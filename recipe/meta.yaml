@@ -43,7 +43,8 @@ test:
   commands:
     - python -m pip check
     {% set pytest_args = '-k "not brotli_response"' %}  # [not win]
-    {% set pytest_args = '-k "not (brotli_response or readline_multibyte_sep or file_post or close or server_error_with_file or simple_ssl or readline_multibyte_splitsep or verify_hostname)"' %}  # [win]
+    {% set pytest_args = '-k "not (brotli_response or readline_multibyte_sep or file_post or close or server_error_with_file or simple_ssl or readline_multibyte_splitsep or verify_hostname or internal_server_error or implicit_sni_from_host_in_ssl
+)"' %}  # [win]
     {% set pytest_args = pytest_args + " --cov=geventhttpclient --cov-branch --no-cov-on-fail --cov-fail-under=71" %}  # [win or python_impl != "pypy"]
     - pytest -vv src/geventhttpclient/tests {{ pytest_args }}
 
