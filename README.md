@@ -1,7 +1,7 @@
 About geventhttpclient
 ======================
 
-Home: https://github.com/gwik/geventhttpclient
+Home: https://github.com/geventhttpclient/geventhttpclient
 
 Package license: MIT
 
