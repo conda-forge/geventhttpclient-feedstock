@@ -42,8 +42,9 @@ test:
     - geventhttpclient
   commands:
     - python -m pip check
-    {% set pytest_args = '-k "not brotli_response"' %}
-    {% set pytest_args = pytest_args + " --cov=geventhttpclient --cov-branch --no-cov-on-fail --cov-fail-under=71" %}  # [python_impl != "pypy"]
+    {% set pytest_args = '-k "not brotli_response"' %} # [not win]
+    {% set pytest_args = '-k "not (brotli_response or readline_multibyte_sep or file_post or close or server_error_with_file)"' %} # [win]
+    {% set pytest_args = pytest_args + " --cov=geventhttpclient --cov-branch --no-cov-on-fail --cov-fail-under=71" %}  # [win or python_impl != "pypy"]
     - pytest -vv src/geventhttpclient/tests {{ pytest_args }}
 
 about:
