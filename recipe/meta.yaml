@@ -9,7 +9,7 @@ source:
   sha256: 5f782c419643f74be4d0918c0d2b63956ef6ddc7a2127f07cbb8033a75ab366f
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [python_impl == "pypy" and (aarch64 or ppc64le)]
 
