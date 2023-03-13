@@ -1,4 +1,5 @@
-{% set version = "2.0.8" %}
+{% set skips = "brotli_response" %}
+{% set version = "2.0.9" %}
 
 package:
   name: geventhttpclient
@@ -6,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
-  sha256: 5f782c419643f74be4d0918c0d2b63956ef6ddc7a2127f07cbb8033a75ab366f
+  sha256: 8abc39d346e923bd6a7b405d38dd01e19146594b6304032f382eda8b0f631513
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [python_impl == "pypy" and (aarch64 or ppc64le)]
 
