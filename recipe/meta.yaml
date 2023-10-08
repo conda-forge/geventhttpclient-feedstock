@@ -1,5 +1,5 @@
 {% set skips = "brotli_response" %}
-{% set version = "2.0.10" %}
+{% set version = "2.0.11" %}
 
 package:
   name: geventhttpclient
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
-  sha256: b7c97b26511957a36a894ec54651c08890a69e118b69755f8e74bfc37c63391b
+  sha256: 549d0f3af08420b9ad2beeda211153c7605b5ba409b228db7f1b81c8bfbec6b4
 
 build:
   number: 1
