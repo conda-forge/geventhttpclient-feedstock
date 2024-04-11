@@ -1,5 +1,4 @@
-{% set skips = "brotli_response" %}
-{% set version = "2.0.12" %}
+{% set version = "2.1.1" %}
 
 package:
   name: geventhttpclient
@@ -7,12 +6,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
-  sha256: ebea08e79c1aa7d03b43936b347c0f87356e6fb1c6845735a11f23c949c655f7
+  sha256: e0a7d93773024d0168e4da1fe36131f555d3d7b8f87b7a7b5e64012a5d0d3914
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [python_impl == "pypy" and (aarch64 or ppc64le)]
+  skip: true  # [py < 39 or (python_impl == "pypy" and (aarch64 or ppc64le))]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
@@ -20,33 +19,34 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
   host:
-    - python
     - pip
-  run:
     - python
+    - setuptools
+  run:
     - brotli-python
     - certifi
-    - gevent >=0.13
-    - six
+    - gevent
+    - python
+    - urllib3
 
 test:
   source_files:
-    - pytest.ini
+    - pyproject.toml
     - src/geventhttpclient/tests
   requires:
+    - coverage
     - dpkt
     - pip
-    - pytest-cov
-    - mock
+    - pytest
     - requests
   imports:
     - geventhttpclient
   commands:
-    - python -m pip check
-    {% set skips = "brotli_response" %}
-    {% set pytest_args = '-m "not online" -k "not ' + skips + '"' %}
-    {% set pytest_args = pytest_args + " --cov=geventhttpclient --cov-branch --no-cov-on-fail --cov-fail-under=69" %}  # [python_impl == "pypy"]
-    - pytest -vv src/geventhttpclient/tests {{ pytest_args }}  # [not win]
+    - pip check
+    {% set pytest = 'pytest -vv --color=yes --tb=long -m "not online" -k "not brotli_response"' %}
+    {% set pytest = 'coverage run --source=geventhttpclient --branch -m ' + pytest %}               # [python_impl != "pypy"]
+    - {{ pytest }} src/geventhttpclient/tests                                                       # [unix]
+    - coverage report --show-missing --skip-covered --fail-under=74                                 # [unix and python_impl != "pypy"]
 
 about:
   home: https://github.com/geventhttpclient/geventhttpclient
@@ -56,25 +56,6 @@ about:
     - LICENSE.txt
     - llhttp/LICENSE-MIT
   summary: A high performance, concurrent http client library for python with gevent
-  description: |
-    gevent.httplib support was removed in gevent 1.0, geventhttpclient now
-    provides that missing functionality.
-
-    geventhttpclient uses a fast http parser, written in C, originating from
-    nginx, extracted and modified by Joyent.
-
-    geventhttpclient has been specifically designed for high concurrency,
-    streaming and support HTTP 1.1 persistent connections. More generally it is
-    designed for efficiently pulling from REST APIs and streaming APIs
-    like Twitter's.
-
-    Safe SSL support is provided by default. geventhttpclient depends on
-    the certifi CA Bundle. This is the same CA Bundle which ships with the
-    Requests codebase, and is derived from Mozilla Firefox's canonical set.
-    As of 1.5, only Python 3.6+ is fully supported (with prebuilt wheels),
-    but Python 2.7 and 3.5 *should* work too.
-
-    Use of SSL/TLS with python 2.7.9 is not recommended and may be broken.
 
 extra:
   recipe-maintainers:
