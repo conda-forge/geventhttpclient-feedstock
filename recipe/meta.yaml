@@ -21,10 +21,11 @@ requirements:
   host:
     - pip
     - python
+    - setuptools
   run:
     - brotli-python
     - certifi
-    - gevent >=0.13
+    - gevent
     - python
     - urllib3
 
