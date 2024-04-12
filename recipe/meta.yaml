@@ -1,4 +1,5 @@
-{% set version = "2.1.1" %}
+{% set pytest = "pytest -vv --color=yes --tb=long -m \"not online\" -k \"not brotli_response\"" %}
+{% set version = "2.2.0" %}
 
 package:
   name: geventhttpclient
@@ -6,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
-  sha256: e0a7d93773024d0168e4da1fe36131f555d3d7b8f87b7a7b5e64012a5d0d3914
+  sha256: 6c91948e40233348e033f1bbc5dc3a96808d9b1512acfb7c0b5f81fe75f5b5fc
 
 build:
   number: 0
