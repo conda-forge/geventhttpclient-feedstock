@@ -1,5 +1,4 @@
-{% set pytest = "pytest -vv --color=yes --tb=long -m \"not online\" -k \"not brotli_response\"" %}
-{% set version = "2.2.0" %}
+{% set version = "2.2.1" %}
 
 package:
   name: geventhttpclient
@@ -7,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
-  sha256: 6c91948e40233348e033f1bbc5dc3a96808d9b1512acfb7c0b5f81fe75f5b5fc
+  sha256: 29f7e02683e3cd4f0032fba67364ff322e8504fddd170d9de5541bcfade85a50
 
 build:
   number: 0
@@ -54,7 +53,7 @@ about:
   license: MIT
   license_family: MIT
   license_file:
-    - LICENSE.txt
+    - LICENSE-MIT
     - llhttp/LICENSE-MIT
   summary: A high performance, concurrent http client library for python with gevent
 
