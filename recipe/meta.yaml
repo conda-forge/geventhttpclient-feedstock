@@ -16,7 +16,7 @@ source:
 build:
   number: 0
   skip: true  # [py < 39 or (python_impl == "pypy" and (aarch64 or ppc64le))]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
