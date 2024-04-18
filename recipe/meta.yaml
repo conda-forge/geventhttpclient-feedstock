@@ -1,13 +1,17 @@
-{% set pytest = "pytest -vv --color=yes --tb=long -m \"not online\" -k \"not brotli_response\"" %}
-{% set version = "2.3.0" %}
+{% set version = "2.3.1" %}
 
 package:
   name: geventhttpclient
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
-  sha256: 738b8288f20e3fd1cf7e57bfa9bf889b29cd2f927c5b2b9ef764a33f49f40452
+  # pypi doesn't consistently have `tests``
+  - folder: dist
+    url: https://pypi.io/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
+    sha256: b40ddac8517c456818942c7812f555f84702105c82783238c9fcb8dc12675185
+  - folder: src
+    url: https://github.com/geventhttpclient/geventhttpclient/archive/refs/tags/{{ version }}.tar.gz
+    sha256: 762fd4ced1106b9d45b5e1ae39a4e6be20545e626877f04ea264296889b18ff2
 
 build:
   number: 0
@@ -33,7 +37,7 @@ requirements:
 
 test:
   source_files:
-    - pyproject.toml
+    - src/pyproject.toml
     - src/geventhttpclient/tests
   requires:
     - coverage
@@ -47,7 +51,7 @@ test:
     - pip check
     {% set pytest = 'pytest -vv --color=yes --tb=long -m "not online" -k "not brotli_response"' %}
     {% set pytest = 'coverage run --source=geventhttpclient --branch -m ' + pytest %}               # [python_impl != "pypy"]
-    - {{ pytest }} src/geventhttpclient/tests                                                       # [unix]
+    - cd src && {{ pytest }} geventhttpclient/tests                                                 # [unix]
     - coverage report --show-missing --skip-covered --fail-under=74                                 # [unix and python_impl != "pypy"]
 
 about:
@@ -55,8 +59,8 @@ about:
   license: MIT
   license_family: MIT
   license_file:
-    - LICENSE-MIT
-    - llhttp/LICENSE-MIT
+    - dist/LICENSE-MIT
+    - dist/llhttp/LICENSE-MIT
   summary: A high performance, concurrent http client library for python with gevent
 
 extra:
