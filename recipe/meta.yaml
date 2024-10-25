@@ -14,7 +14,7 @@ source:
     sha256: 762fd4ced1106b9d45b5e1ae39a4e6be20545e626877f04ea264296889b18ff2
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py < 39 or (python_impl == "pypy" and (aarch64 or ppc64le))]
   script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
