@@ -19,7 +19,7 @@ def do(*args: Any) -> int:
     if WIN:
         print("... skipping on windows")
         return 0
-    return call(args, cwd="src")
+    return call(str_args, cwd="src")
 
 
 if __name__ == "__main__":
