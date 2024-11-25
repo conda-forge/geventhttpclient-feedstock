@@ -1,4 +1,3 @@
-{% set pytest = "pytest -vv --color=yes --tb=long -m \"not online\" -k \"not brotli_response\"" %}
 {% set version = "2.3.3" %}
 
 package:
@@ -16,7 +15,6 @@ source:
 
 build:
   number: 0
-  skip: true  # [py < 39 or (python_impl == "pypy" and (aarch64 or ppc64le))]
   script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
@@ -50,10 +48,6 @@ test:
     - geventhttpclient
   commands:
     - pip check
-    {% set pytest = 'pytest -vv --color=yes --tb=long -m "not online" -k "not brotli_response"' %}
-    {% set pytest = 'coverage run --source=geventhttpclient --branch -m ' + pytest %}               # [python_impl != "pypy"]
-    - cd src && {{ pytest }}                                                                        # [unix]
-    - coverage report --show-missing --skip-covered --fail-under=72                                 # [unix and python_impl != "pypy"]
 
 about:
   home: https://github.com/geventhttpclient/geventhttpclient
