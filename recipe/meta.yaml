@@ -1,4 +1,4 @@
-{% set version = "2.3.3" %}
+{% set version = "2.3.4" %}
 
 package:
   name: geventhttpclient
@@ -8,10 +8,10 @@ source:
   # pypi doesn't consistently have `tests``
   - folder: dist
     url: https://pypi.org/packages/source/g/geventhttpclient/geventhttpclient-{{ version }}.tar.gz
-    sha256: 3e74c1570d01dd09cabdfe2667fbf072520ec9bb3a31a0fd1eae3d0f43847f9b
+    sha256: 1749f75810435a001fc6d4d7526c92cf02b39b30ab6217a886102f941c874222
   - folder: src
     url: https://github.com/geventhttpclient/geventhttpclient/archive/refs/tags/{{ version }}.tar.gz
-    sha256: c94fe21977cf3fdd0d76792ea12c40eb623bb03a0b8f04bbc85cca10f1d1101d
+    sha256: 4256b59d4ec9a9f3a827125fcc1c2f3c47abbda19716a71ae9c3a4844746f1cc
 
 build:
   number: 0
