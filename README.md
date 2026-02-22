@@ -3,11 +3,13 @@ About geventhttpclient-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/geventhttpclient-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/geventhttpclient/geventhttpclient
+Home: https://pypi.org/project/geventhttpclient
 
 Package license: MIT
 
 Summary: A high performance, concurrent http client library for python with gevent
+
+Development: https://github.com/geventhttpclient/geventhttpclient
 
 Current build status
 ====================
