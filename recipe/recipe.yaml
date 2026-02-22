@@ -67,7 +67,8 @@ about:
     - dist/LICENSE-MIT
     - dist/llhttp/LICENSE-MIT
   summary: A high performance, concurrent http client library for python with gevent
-  homepage: https://github.com/geventhttpclient/geventhttpclient
+  homepage: https://pypi.org/project/geventhttpclient
+  repository: https://github.com/geventhttpclient/geventhttpclient
 
 extra:
   recipe-maintainers:
