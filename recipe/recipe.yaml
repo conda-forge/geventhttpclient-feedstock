@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "2.3.8"
+  version: "2.3.9"
 
 package:
   name: geventhttpclient
@@ -11,10 +11,10 @@ package:
 source:
   # pypi doesn't consistently have `tests``
   - url: https://pypi.org/packages/source/g/geventhttpclient/geventhttpclient-${{ version }}.tar.gz
-    sha256: 92d8c8b14aa6f62467b28fc45e4a9cd661d96b176f88b515920bda31a9bf8cb1
+    sha256: 16807578dc4a175e8d97e6e39d65a10b04b5237a8c55f7a5ef39044e869baeb8
     target_directory: dist
   - url: https://github.com/geventhttpclient/geventhttpclient/archive/refs/tags/${{ version }}.tar.gz
-    sha256: 35a3e9273163dfaefe971248cad91a34d7e6e841c7f86586e1eed15ed44b31b8
+    sha256: 0b1791ff8b354c0a39c8369dcc9ed3d7d7fee0a9aa89f52fe4a004692fb47288
     target_directory: src
 
 build:
