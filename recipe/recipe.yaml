@@ -24,7 +24,7 @@ build:
   number: 0
   script:
     - cd dist
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
 
 requirements:
   build:
@@ -46,8 +46,16 @@ requirements:
     - urllib3
 
 tests:
+  - package_contents:
+      strict: true
+      files:
+        - etc/conda/test-files/geventhttpclient/**
+      site_packages:
+        - geventhttpclient/**
+        - geventhttpclient-${{ version }}.dist-info/**
   - python:
       imports: geventhttpclient
+      pip_check: true
   - files:
       recipe:
         - run_test.py
