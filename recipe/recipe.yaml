@@ -44,7 +44,6 @@ requirements:
     - certifi
     - gevent
     - python
-    - urllib3
 
 tests:
   - package_contents:
