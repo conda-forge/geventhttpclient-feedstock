@@ -38,6 +38,7 @@ requirements:
     - pip
     - python
     - setuptools
+    - wheel
   run:
     - brotli-python
     - certifi
