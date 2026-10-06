@@ -23,8 +23,11 @@ build:
     - target_platform == "linux-ppc64le" and match(python, ">=3.15")
   number: 0
   script:
-    - cd dist
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
+    env:
+      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
+    content:
+      - cd dist
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
 
 requirements:
   build:
@@ -37,12 +40,12 @@ requirements:
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - setuptools >=77
+    - setuptools-scm >=8
   run:
     - brotli-python
     - certifi
-    - gevent
+    - gevent >=25.9
     - python
 
 tests:
