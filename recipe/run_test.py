@@ -23,4 +23,4 @@ def do(*args: Any) -> int:
 
 
 if __name__ == "__main__":
-    exit(max([do(*COV, *RUN, "-m", *PYTEST), do(*COV, *REPORT)]))
+    exit(do(*COV, *RUN, "-m", *PYTEST) or do(*COV, *REPORT))

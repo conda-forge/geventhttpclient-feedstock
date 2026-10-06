@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "2.5.1"
+  version: "2.6.0"
 
 package:
   name: geventhttpclient
@@ -11,10 +11,10 @@ package:
 source:
   # pypi doesn't consistently have `tests``
   - url: https://pypi.org/packages/source/g/geventhttpclient/geventhttpclient-${{ version }}.tar.gz
-    sha256: 9a5e9baf254dc63f57e04bf606aa4475a858d005c191ce346bda2e63152409c6
+    sha256: 95f57d382d04319233a72f85bd8dcf30a422385d3e45a9fdd9d5e4694433a28c
     target_directory: dist
   - url: https://github.com/geventhttpclient/geventhttpclient/archive/refs/tags/${{ version }}.tar.gz
-    sha256: 0886b343f4f9be05bbd72a65435801d3272664718e6cf368a906783ed30b617a
+    sha256: fc4b3c75cc56e6d511a12bc09c9450ab04b1a6185dad4e0f56e433f33a527ad7
     target_directory: src
 
 build:
@@ -23,8 +23,11 @@ build:
     - target_platform == "linux-ppc64le" and match(python, ">=3.15")
   number: 0
   script:
-    - cd dist
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
+    env:
+      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
+    content:
+      - cd dist
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
 
 requirements:
   build:
@@ -37,12 +40,12 @@ requirements:
   host:
     - pip
     - python
-    - setuptools
-    - wheel
+    - setuptools >=77
+    - setuptools-scm >=8
   run:
     - brotli-python
     - certifi
-    - gevent
+    - gevent >=25.9
     - python
 
 tests:
@@ -66,9 +69,10 @@ tests:
       run:
         - coverage
         - dpkt
-        - pip
+        - httplib2
         - pytest
         - requests
+        - urllib3
     script:
       - python run_test.py
 
