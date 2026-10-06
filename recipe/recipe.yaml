@@ -69,9 +69,10 @@ tests:
       run:
         - coverage
         - dpkt
-        - pip
+        - httplib2
         - pytest
         - requests
+        - urllib3
     script:
       - python run_test.py
 
